@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AllerMenu</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <div class="intro">
+          <p class="eyebrow">Menu allergen checker</p>
+          <h1 id="app-title">AllerMenu</h1>
+          <p class="intro-copy">
+            Upload a menu photo or text file, then review likely allergens by dish.
+          </p>
+        </div>
+
+        <div class="tool-layout">
+          <section class="input-panel" aria-label="Menu input">
+            <label class="drop-zone" for="menu-file" id="drop-zone">
+              <input
+                id="menu-file"
+                type="file"
+                accept=".txt,.md,.csv,.json,.html,.htm,image/*"
+              />
+              <span class="upload-icon" aria-hidden="true">+</span>
+              <span class="drop-title">Upload menu</span>
+              <span class="drop-meta">Text files are read directly. Photos are scanned in the browser.</span>
+            </label>
+
+            <label class="text-input-label" for="menu-text">Menu text</label>
+            <textarea
+              id="menu-text"
+              placeholder="Paste dishes here, one per line. Example: Pesto pasta with parmesan and pine nuts"
+            ></textarea>
+            <p class="status" id="status" role="status"></p>
+
+            <div class="actions">
+              <button id="analyze-button" type="button">Analyze menu</button>
+              <button id="clear-button" type="button" class="secondary">Clear</button>
+            </div>
+          </section>
+
+          <section class="results-panel" aria-live="polite">
+            <div class="summary-strip">
+              <div>
+                <span class="metric" id="dish-count">0</span>
+                <span class="metric-label">allergic cases</span>
+              </div>
+              <div>
+                <span class="metric" id="allergen-count">0</span>
+                <span class="metric-label">allergens found</span>
+              </div>
+            </div>
+
+            <section class="allergen-foods-panel" aria-labelledby="allergen-foods-title">
+              <div class="section-heading">
+                <h2 id="allergen-foods-title">Foods with allergens</h2>
+                <span id="allergen-foods-count">0 listed</span>
+              </div>
+              <ul class="allergen-foods-list" id="allergen-foods-list">
+                <li>No allergic foods listed yet.</li>
+              </ul>
+            </section>
+
+            <div class="filter-row" id="filter-row" aria-label="Allergen filters"></div>
+            <div class="results-list" id="results-list">
+              <div class="empty-state">
+                <h2>No menu analyzed yet</h2>
+                <p>Paste menu text or upload a text file to see likely allergens.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="/src/main.js"></script>
+  </body>
+</html>
