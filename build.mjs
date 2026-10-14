@@ -3,7 +3,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 const html = await readFile("index.html", "utf8");
 const css = await readFile("styles.css", "utf8");
 const js = await readFile("src/main.js", "utf8");
-const hosting = await readFile(".dist/openai/hosting.json", "utf8");
+const hosting = await readFile("dist/.openai/hosting.json", "utf8");
 
 const server = `const assets = new Map([
   ["/", { type: "text/html; charset=utf-8", body: ${JSON.stringify(html)} }],
